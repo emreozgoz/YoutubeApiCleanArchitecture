@@ -2,6 +2,7 @@
 using YoutubeApiCleanArchitecture.Domain.Entities.Customers.DTOs;
 using YoutubeApiCleanArchitecture.Domain.Entities.Customers.Events;
 using YoutubeApiCleanArchitecture.Domain.Entities.Customers.ValueObject;
+using YoutubeApiCleanArchitecture.Domain.Entities.Invoices;
 using YoutubeApiCleanArchitecture.Domain.Entities.Shared;
 
 namespace YoutubeApiCleanArchitecture.Domain.Entities.Customers
@@ -19,6 +20,7 @@ namespace YoutubeApiCleanArchitecture.Domain.Entities.Customers
         public Title Title { get; private set; } = null!;
         public Address Adress { get; private set; } = null!;
         public Money Balance { get; private set; } = null!;
+        public ICollection<Invoice> Invoices { get; private set; } = null!; 
 
         public static Customer Create(CreateCustomerDto request)
         {

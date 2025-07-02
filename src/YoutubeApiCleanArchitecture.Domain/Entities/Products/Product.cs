@@ -1,11 +1,12 @@
 ﻿using YoutubeApiCleanArchitecture.Domain.Abstraction;
+using YoutubeApiCleanArchitecture.Domain.Entities.Products.DTOs;
 using YoutubeApiCleanArchitecture.Domain.Entities.Shared;
 
 namespace YoutubeApiCleanArchitecture.Domain.Entities.Product
 {
     public sealed class Product : BaseEntity
     {
-        public Product()
+        private Product()
         {
 
         }
@@ -17,10 +18,11 @@ namespace YoutubeApiCleanArchitecture.Domain.Entities.Product
         public Title Description { get; private set; } = null!;
         public Money UnitPrice { get; private set; } = null!;
 
-        public static Product Create(CreateProductDto request)=> new Product(Guid.NewGuid(), request.Description, request.UnitPrice);
-        public void Update(UpdateProductDto request) { 
-            Description = request.Description;
-            UnitPrice = request.UnitPrice;
+        public static Product Create(CreateProductDto request) => new Product(Guid.NewGuid(), new Title(request.Description), new Money(request.UnitPrice));
+        public void Update(UpdateProductDto request)
+        {
+            Description = new Title(request.Description);
+            UnitPrice = new Money(request.UnitPrice);
         }
     }
 }
